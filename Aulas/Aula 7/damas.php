@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(isset($_SESSION["login"]) && !empty($_SESSION["login"])) {
+    echo "Bem vindo(a) " . $_SESSION["login"]["user"] . "!";
+} else {
+    header('Location: login.php');
+    exit;
+}
 // Criar uma array 8x8 para o tabuleiro
 $tabuleiro = array();
 
@@ -31,7 +38,7 @@ for ($i = 0; $i < 8; $i++) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabuleiro de Damas</title>
     <style>
-        body {
+        main {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -75,7 +82,7 @@ for ($i = 0; $i < 8; $i++) {
     </style>
 </head>
 <body>
-
+<main>
 <table>
     <?php
     // Exibir o tabuleiro como uma tabela HTML
@@ -103,6 +110,6 @@ for ($i = 0; $i < 8; $i++) {
     }
     ?>
 </table>
-
+</main>
 </body>
 </html>
