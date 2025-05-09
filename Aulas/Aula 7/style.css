@@ -12,3 +12,11 @@ form {
     align-items: stretch;
     justify-content: center;
 }
+
+.login {
+    border: 2px solid #000;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}

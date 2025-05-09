@@ -31,11 +31,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="login">
+        <a href="login.php">Login</a> <a href="logout.php">Logout</a> <a href="damas.php">Damas</a>
+    </div>
+
+    </a>
+    <br/>
+    <?php 
+    session_start();
+    if(isset($_SESSION["login"]) && !empty($_SESSION["login"])) {
+        echo "Bem vindo(a) " . $_SESSION["login"]["user"] . "!";
+    } else {
+        header('Location: login.php');
+        exit;
+    }
+    ?>
+    <br/>
     <form action="" method="post">
         <label>Num 1:</label>
-        <input type="number" name="num1" id="num1">
+        <input type="number" name="num1" id="num1" required>
         <label>Num 2:</label>
-        <input type="number" name="num2" id="num2">
+        <input type="number" name="num2" id="num2" required>
         <label>Op:</label>
         <select name="op" id="op">
             <option value="+">+</option>
@@ -46,7 +62,6 @@
         <button type="submit">=</button>
     </form>
 
-    <a href="login.php">login</a>
     <?php
     if(isset($_POST["num1"]) && isset($_POST["num2"])) {
         $num1 = $_POST["num1"];
@@ -55,14 +70,30 @@
 
         $resultado;
 
+        function soma($num1, $num2) {
+            return $num1 + $num2;
+        }
+
+        function sub($num1, $num2) {
+            return $num1 - $num2;
+        }
+
+        function mult($num1, $num2) {
+            return $num1 * $num2;
+        }
+
+        function div($num1, $num2) {
+            return $num1 / $num2;
+        }
+
         switch($op) : 
-            case "+" : $resultado = $num1 + $num2;
+            case "+" : $resultado = soma($num1,$num2);
             break;
-            case "-" : $resultado = $num1 - $num2;
+            case "-" : $resultado = sub($num1,$num2);
             break;
-            case "*" : $resultado = $num1 * $num2;
+            case "*" : $resultado = mult($num1,$num2);
             break;
-            case "/" : $resultado = $num1 / $num2;
+            case "/" : $resultado = div($num1, $num2);
         endswitch;
 
         echo $resultado;

@@ -24,12 +24,21 @@
             "senha" => "fortnite"
         ],
         [
-            "user" => "Marx ama pod de maçã",
+            "user" => "Marx ama pod de blueberry",
             "senha" => "6000 puffs"
+        ],
+        [
+            "user" => "sturti",
+            "senha" => "banana"
         ]
     ];
-
-    $_SESSION["login"] = [];
+    
+    if(!isset($_SESSION["login"]))
+        $_SESSION["login"] = [];
+    else if(!empty($_SESSION["login"])) {
+    header('Location: index.php');
+    exit();
+    }
 
     if(isset($_POST["user"]) && isset($_POST["senha"])) {
         $user = $_POST["user"];
@@ -38,7 +47,9 @@
         foreach($usuarios as $usuario) {
             if($usuario["user"] == $user && $usuario["senha"] == $senha) {
                 $_SESSION["login"] = $usuario;
-                echo "bem vindo " . $_SESSION["login"]["user"];
+
+                header('Location: index.php');
+                exit();
             }
         }
     }
