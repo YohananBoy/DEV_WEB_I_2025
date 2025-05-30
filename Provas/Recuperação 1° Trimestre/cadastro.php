@@ -64,6 +64,18 @@ if(!isset($_SESSION["login"])) header("Location: login.php");
 		if(!isset($_SESSION["pacientes"][$_SESSION["login"]["email"]])) {
 			$_SESSION["pacientes"][$_SESSION["login"]["email"]] = [];
 		}
+
+    function validaPaciente($pacienteTestado) {
+      $pacientes = $_SESSION["pacientes"][$_SESSION["login"]["email"]];
+      $pacientesRepetidos = array_filter($pacientes, function($valor) use ($pacienteTestado) {
+        if($valor["nome"] == $pacienteTestado["nome"] && $valor["doenca"] == $pacienteTestado["doenca"]) {
+          echo "Paciente já cadastrado";
+          return true;
+        }
+        return false;
+      });
+      return count($pacientesRepetidos)>0?false:true;
+    }
 	
 		if(isset($_POST["nome"], $_POST["genero"], $_POST["idade"], $_POST["sangue"], $_POST["doenca"], $_POST["gravidade"], $_POST["data"])) {
 				$paciente = ["nome" => $_POST["nome"],
@@ -74,8 +86,10 @@ if(!isset($_SESSION["login"])) header("Location: login.php");
 							"gravidade" => $_POST["gravidade"],
 							"data" => $_POST["data"]];
 							
+        if(validaPaciente($paciente)) {
 				$_SESSION["pacientes"][$_SESSION["login"]["email"]][] = $paciente;
 				echo "Paciente " . $paciente["nome"] . " cadastrado com sucesso!";
+        }
 		}
 	?>
   </div>
