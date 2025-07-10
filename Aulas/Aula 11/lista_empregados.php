@@ -13,7 +13,7 @@
     <button type="submit">Filtrar</button>
 </form>
 
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -35,8 +35,12 @@
                 $dadosEmpregado = explode(SEPARADOR, $linha);
                 $nome = $dadosEmpregado[1];
                 $cpf = $dadosEmpregado[2];
+                $rg = $dadosEmpregado[3];
+                $cep = $dadosEmpregado[4];
+                $logradouro = $dadosEmpregado[5];
+                $numero = $dadosEmpregado[6];
                 if(str_contains($nome, $filtro)) {
-                    echo "<tr><td>".$nome."</td><td>".$cpf."</td></tr>";
+                    echo "<tr><td>".$nome."</td><td>".$cpf."</td><td>".$rg."</td><td>".$cep."</td><td>".$logradouro."</td><td>".$numero."</td></tr>";
                 }
                 }
                 fclose($arquivo);
