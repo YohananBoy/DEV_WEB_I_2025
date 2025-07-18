@@ -1,29 +1,27 @@
 <?php
+
     abstract class ClassePai {
         public $id;
         private $nomeArquivo="";
-        protected $separador = "#";
+        const SEPARADOR = "#";
         public function __construct($id, $nomeArquivo) {
             $this->id = $id;
-            $this->nomeArquivo = "../db/" . $nomeArquivo;
+            $this->nomeArquivo = $nomeArquivo;
         }
         abstract function montaLinhaDados();
 
-        public function encontraUltimoId() {
+        public function encontraUltimoId(){
             $arquivo = fopen($this->nomeArquivo, "r");
             $idTemp = 1;
-            while(!feof($arquivo)) {
-                $linha = trim(fgets($arquivo));
+            while(!feof($arquivo)){
+                $linha = fgets($arquivo);
                 if(empty($linha))
                     continue;
-                var_dump($linha);
-                $dados = explode($this->separador, $linha);
-                $idTemp = intval($dados[0]) + 1;
-                echo "idTemp= " . $idTemp . "<br>";
+                $dados = explode(self::SEPARADOR, $linha);
+                $idTemp = intval($dados[0])+1;
             }
-            $this->id = $idTemp;
+            $this->id=$idTemp;
         }
-
         public function cadastrar() {
             $this->encontraUltimoId();
             //TODO: Cadastrar  no arquivo.
@@ -34,9 +32,7 @@
         public function remover() {
             //TODO: Remover funcionário do arquivo.
         }
-        public function listar() {
-            //TODO: Listar funcionários do arquivo.
-        }
+        static abstract function listar();
         public function alterar() {
             //TODO: Alterar linha do funcionário funcionário no arquivo.
         }

@@ -22,11 +22,8 @@ let validaSalario = (campoSalario, charDigitado) => {
             return charDigitado == el
         })) 
     {
-
         //SE NAO FOR NUMERO OU VIRGULA, RETIRA O ÚLTIMO CARACTER DIGITADO
                 campoSalario.value = campoSalario.value.substring(0, campoSalario.value.length-2);
-        
-       
     }
     //SE A VÍRGULA JÁ FOI DIGITADA ANTES, TAMBÉM TIRA
     if(charDigitado=="," && campoSalario.value.indexOf(",")<campoSalario.value.length-1) {

@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Funcionário</title>
-    <script src="cadastro_funcionario.js"></script>
+    <title>Cadastro de Produto</title>
+    <script src="cadastro_produto.js"></script>
 </head>
 <body>
-    <form id="formCadastroFuncionario" action="executa_acao_funcionario.php" method="post">
+    <form id="formCadastroProduto" action="executa_acao_produto.php" method="post">
         <input type="hidden" name="acao" value="cadastrar"/>
         <input type="hidden" name="id" value="<?php echo isset($_GET["id"])?$_GET["id"]:"" ?>"/>
         <label for="nome">Nome:</label><input type="text" id="nome" name="nome"/>
-        <label for="salario">Salario:</label><input type="text" id="salario" name="salario"/>
-        <label for="telefone">Telefone:</label><input type="tel" id="telefone" name="telefone"/>
+        <label for="preco">Preço:</label><input type="text" id="preco" name="preco"/>
         <button type="submit">Cadastrar</button>
     </form>
-    <a href="tabela_funcionario.php">Tabela Funcionario</a>
+    <a href="tabela_produto.php">Tabela Funcionario</a>
 </body>
 </html>
