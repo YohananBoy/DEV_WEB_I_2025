@@ -6,9 +6,14 @@
     <title>Tabela Top</title>
 </head>
 <body>
+    <form method="post">
+        <label for="nome">Nome:</label><input name="filtro">
+        <button type="submit">Filtrar</button>
+    </form>
     <?php
     include("../service/funcionario.service.php");
-    listarFuncionario("");
+    $filtro = isset($_POST["nome"])?$_POST["nome"]:"";
+    listarFuncionario($filtro);
     ?>
     <a href="cadastro_funcionario.php">Cadastrar Funcionario</a>
 </body>

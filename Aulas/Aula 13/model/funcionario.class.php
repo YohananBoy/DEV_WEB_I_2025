@@ -16,7 +16,7 @@
         {
             return $this->id.self::SEPARADOR.$this->nome.self::SEPARADOR.$this->salario.self::SEPARADOR.$this->telefone;
         }    
-        static public function listar() {
+        static public function listar($filtroNome) {
             $arquivo = fopen("../db/funcionario.txt", "r");
             $retorno = [];
             while(!feof($arquivo)){
@@ -24,7 +24,8 @@
                 if(empty($linha))
                     continue;
                 $dados = explode(self::SEPARADOR, $linha);
-                array_push($retorno, new Funcionario($dados[0], $dados[1], $dados[2], $dados[3]));
+                if(str_contains($filtroNome, $dados[1]))
+                    array_push($retorno, new Funcionario($dados[0], $dados[1], $dados[2], $dados[3]));
             }
             return $retorno;
         }
