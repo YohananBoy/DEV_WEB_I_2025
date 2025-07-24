@@ -6,6 +6,10 @@
 
     }
 
+    function pegaFuncionarioPeloId($id) {
+        return Funcionario::pegaPorId($id);
+    }
+
     function alterarFuncionario($id, $novoNome, $novoSalario, $novoTelefone) {
         
     }
