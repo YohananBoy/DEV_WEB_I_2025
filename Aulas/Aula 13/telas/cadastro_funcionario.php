@@ -10,11 +10,10 @@
     <form id="formCadastroFuncionario" action="executa_acao_funcionario.php" method="post">
         <input type="hidden" name="acao" value="cadastrar"/>
         <input type="hidden" name="id" value="<?php echo isset($_GET["id"])?$_GET["id"]:"" ?>"/>
-        <label for="nome">Nome:</label><input type="text" id="nome" name="nome"/>
+        <label for="nome">Nome:</label><input type="text" id="nome" name="nome"/><br/>
         <label for="salario">Salario:</label><input type="text" id="salario" name="salario"/>
         <label for="telefone">Telefone:</label><input type="tel" id="telefone" name="telefone"/>
         <button type="submit">Cadastrar</button>
     </form>
-    <a href="tabela_funcionario.php">Tabela Funcionario</a>
 </body>
 </html>

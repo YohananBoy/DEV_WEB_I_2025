@@ -15,7 +15,7 @@
             return $this->id.self::SEPARADOR.$this->nome.self::SEPARADOR.$this->preco;
         }  
 
-        static public function listar() {
+        static public function listar($filtroNome) {
             $arquivo = fopen("../db/produto.txt", "r");
             $retorno = [];
             while(!feof($arquivo)){
@@ -23,7 +23,10 @@
                 if(empty($linha))
                     continue;
                 $dados = explode(self::SEPARADOR, $linha);
-                array_push($retorno, new Produto($dados[0], $dados[1], $dados[2]));
+                $nome = strtolower($dados[1]);
+                $filtro = strtolower($filtroNome);
+                if($filtro === "" || str_contains($nome, $filtro))
+                    array_push($retorno, new Produto($dados[0], $dados[1], $dados[2]));
             }
             return $retorno;
         }

@@ -24,8 +24,12 @@
                 if(empty($linha))
                     continue;
                 $dados = explode(self::SEPARADOR, $linha);
-                if(str_contains($filtroNome, $dados[1]))
+                $nome = strtolower($dados[1]);
+                $filtro = strtolower($filtroNome);
+                if($filtro === "" || str_contains($nome, $filtro))
                     array_push($retorno, new Funcionario($dados[0], $dados[1], $dados[2], $dados[3]));
+                
+                
             }
             return $retorno;
         }

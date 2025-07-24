@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Produto</title>
-    <script src="cadastro_produto.js"></script>
+    <title>Cadastro de Cliente</title>
+    <script src="cadastro_cliente.js"></script>
 </head>
 <body>
-    <form id="formCadastroProduto" action="executa_acao_produto.php" method="post">
+    <form id="formCadastroCliente" action="executa_acao_cliente.php" method="post">
         <input type="hidden" name="acao" value="cadastrar"/>
         <input type="hidden" name="id" value="<?php echo isset($_GET["id"])?$_GET["id"]:"" ?>"/>
         <label for="nome">Nome:</label><input type="text" id="nome" name="nome"/>
-        <label for="preco">Preço:</label><input type="text" id="preco" name="preco"/>
+        <label for="telefone">Telefone:</label><input type="text" id="telefone" name="telefone"/>
         <button type="submit">Cadastrar</button>
     </form>
-    <a href="tabela_produto.php">Tabela Produto</a>
+    <a href="tabela_cliente.php">Tabela Cliente</a>
 </body>
 </html>
