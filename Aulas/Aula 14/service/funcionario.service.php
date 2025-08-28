@@ -1,5 +1,5 @@
 <?php
-    include("../model/funcionario.class.php");
+    include("../../model/funcionario.class.php");
     function cadastrarFuncionario($nome, $salario, $telefone) {
         $funcionario = new Funcionario(null, $nome, $salario, $telefone);
         $funcionario->cadastrar();
@@ -7,11 +7,11 @@
     }
 
     function pegaFuncionarioPeloId($id) {
-        return Funcionario::pegaPorId($id, "../db/funcionario.txt");
+        return Funcionario::pegaPorId($id, __DIR__ . "/../db/funcionario.txt");
     }
 
     function alterarFuncionario($id, $novoNome, $novoSalario, $novoTelefone) {
-        $funcionario = Funcionario::pegaPorId($id, "../db/funcionario.txt");
+        $funcionario = Funcionario::pegaPorId($id, __DIR__ . "/../db/funcionario.txt");
         if ($funcionario) {
             $funcionario->nome = $novoNome;
             $funcionario->salario = $novoSalario;
@@ -21,7 +21,7 @@
     }
 
     function removerFuncionario($id) {
-        $funcionario = Funcionario::pegaPorId($id, "../db/funcionario.txt");
+        $funcionario = Funcionario::pegaPorId($id, __DIR__ . "/../db/funcionario.txt");
         if ($funcionario) {
              $funcionario->remover();
         }

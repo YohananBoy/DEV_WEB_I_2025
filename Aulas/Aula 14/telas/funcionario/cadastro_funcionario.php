@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-include("../service/funcionario.service.php");
+include("../../service/funcionario.service.php");
   $funcionario = "";
   if(isset($_GET["id"]))
       $funcionario = pegaFuncionarioPeloId($_GET["id"]);

@@ -1,5 +1,5 @@
 <?
-  include("../service/funcionario.service.php");
+  include("../../service/funcionario.service.php");
   var_dump($_POST);
   $acao = $_POST["acao"] ?? $_GET["acao"] ?? null;
   $nome = isset($_POST['nome'])?$_POST['nome']:null;
