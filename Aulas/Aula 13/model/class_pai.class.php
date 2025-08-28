@@ -22,6 +22,20 @@
             }
             $this->id=$idTemp;
         }
+
+        static public function pegaPorId($id) {
+            $arquivo = fopen(self::nomeArquivo, "r");
+            while(!feof($arquivo)){
+                $linha = fgets($arquivo);
+                if(empty($linha))
+                    continue;
+                $dados = explode(self::SEPARADOR, $linha);
+                if($dados[0] == $id){
+                    return new Funcionario($dados[0], $dados[1], $dados[2], $dados[3]);
+                }
+            }
+        }
+        
         public function cadastrar() {
             $this->encontraUltimoId();
             //TODO: Cadastrar  no arquivo.
