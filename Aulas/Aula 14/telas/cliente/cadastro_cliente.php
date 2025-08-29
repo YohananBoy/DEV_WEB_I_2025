@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-include("../../service/cliente.service.php");
+require_once "../../service/cliente.service.php";
   $cliente = "";
   if(isset($_GET["id"]))
       $cliente = pegaClientePeloId($_GET["id"]);

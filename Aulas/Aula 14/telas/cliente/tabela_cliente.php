@@ -11,9 +11,9 @@
         <button>Filtrar</button>
     </form>
     <?php
-    include("../../service/cliente.service.php");
-    $filtro = isset($_POST["filtro"])?$_POST["filtro"]:"";
-    listarCliente($filtro);
+        require_once "../../service/cliente.service.php";
+        $filtro = isset($_POST["filtro"]) ? $_POST["filtro"] : "";
+        listarCliente($filtro);
     ?>
     <a href="cadastro_cliente.php">Cadastrar Cliente</a>
 </body>

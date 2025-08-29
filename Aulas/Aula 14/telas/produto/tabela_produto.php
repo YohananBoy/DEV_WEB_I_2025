@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela Tabela</title>
+    <title>Tabela Produto</title>
 </head>
 <body>
     <form method="post">
@@ -11,10 +11,10 @@
         <button>Filtrar</button>
     </form>
     <?php
-        require_once "../../service/funcionario.service.php";
+        require_once "../../service/produto.service.php";
         $filtro = isset($_POST["filtro"]) ? $_POST["filtro"] : "";
-        listarFuncionario($filtro);
+        listarProduto($filtro);
     ?>
-    <a href="cadastro_funcionario.php">Cadastrar Funcionario</a>
+    <a href="cadastro_produto.php">Cadastrar Produto</a>
 </body>
 </html>

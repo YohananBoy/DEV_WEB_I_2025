@@ -1,24 +1,24 @@
 <?php
 require_once "class_pai.class.php";
-class Cliente extends ClassePai
+class Produto extends ClassePai
 {
     public $nome;
-    public $telefone;
+    public $preco;
 
-    public function __construct($id, $nome, $telefone)
+    public function __construct($id, $nome, $preco)
     {
-        parent::__construct($id, __DIR__ . "/../db/cliente.txt");
-        $this->nome     = $nome;
-        $this->telefone = $telefone;
+        parent::__construct($id, __DIR__ . "/../db/produto.txt");
+        $this->nome  = $nome;
+        $this->preco = $preco;
     }
 
     public function montaLinhaDados()
     {
-        return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->telefone;
+        return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->preco;
     }
     public static function listar($filtroNome)
     {
-        $arquivo = fopen("../../db/cliente.txt", "r");
+        $arquivo = fopen("../../db/produto.txt", "r");
         $retorno = [];
         while (! feof($arquivo)) {
             $linha = fgets($arquivo);
@@ -30,7 +30,7 @@ class Cliente extends ClassePai
             $nome   = strtolower($dados[1]);
             $filtro = strtolower($filtroNome);
             if ($filtro === "" || str_contains($nome, $filtro)) {
-                array_push($retorno, new Cliente($dados[0], $dados[1], $dados[2]));
+                array_push($retorno, new Produto($dados[0], $dados[1], $dados[2]));
             }
 
         }

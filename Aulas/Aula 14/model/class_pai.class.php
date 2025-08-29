@@ -1,5 +1,4 @@
 <?php
-
 abstract class ClassePai
 {
     public $id;
@@ -43,10 +42,14 @@ abstract class ClassePai
                     return new Funcionario($dados[0], $dados[1], $dados[2], $dados[3]);
                 } elseif ($classe === 'Cliente') {
                     return new Cliente($dados[0], $dados[1], $dados[2]);
+                } elseif ($classe === 'Produto') {
+                    return new Produto($dados[0], $dados[1], $dados[2]);
+                } elseif ($classe === 'Venda') {
+                    return new Venda($dados[0], $dados[1], $dados[2], $dados[3]);
                 }
             }
-            fclose($arquivo);
         }
+        fclose($arquivo);
     }
 
     public function cadastrar()
