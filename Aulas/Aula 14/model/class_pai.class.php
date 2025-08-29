@@ -46,6 +46,8 @@ abstract class ClassePai
                     return new Produto($dados[0], $dados[1], $dados[2]);
                 } elseif ($classe === 'Venda') {
                     return new Venda($dados[0], $dados[1], $dados[2], $dados[3]);
+                } elseif ($classe === 'Usuario') {
+                    return new Usuario($dados[0], $dados[1], $dados[2], $dados[3]);
                 }
             }
         }
