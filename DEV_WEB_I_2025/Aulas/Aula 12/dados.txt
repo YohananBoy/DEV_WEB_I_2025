@@ -1,0 +1,11 @@
+1#Miguel#miguel.silva@email.com#m1gu3l123
+2#Laura#laura.martins@email.com#lau2025
+3#Bruno#bruno.souza@email.com#brun0pass
+4#Camila#camila.ferreira@email.com#cam123!
+5#Lucas#lucas.almeida@email.com#luca2024
+6#Fernanda#fernanda.rocha@email.com#f3rn@nda
+7#Rafael#rafael.gomes@email.com#r4fpass
+8#Juliana#juliana.lima@email.com#juli2023
+9#Gustavo#gustavo.pereira@email.com#gusp55
+10#Isabela#isabela.costa@email.com#isa123456
+11#Yohanan#yohanan@email.com#senha123

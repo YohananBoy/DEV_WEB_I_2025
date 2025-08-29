@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrador de Empregados Que Devem Ser Cadastrados</title>
+</head>
+<body>
+    <form action="cadastro_empregado.php" method="post">
+        <fieldset>
+            <legend>Dados Básicos</legend>
+            <label>Nome:</label><input type="text" name="nome" id="nome">
+            <label>CPF:</label><input type="number" name="cpf" id="cpf">
+            <label>RG:</label><input type="number" name="rg" id="rg">
+        </fieldset>
+        <fieldset>
+            <legend>Endereço</legend>
+            <label>CEP:</label><input type="number" name="cep" id="cep">
+            <label>Logradouro:</label><input type="text" name="logradouro" id="logradouro">
+            <label>Numero:</label><input type="number" name="numero" id="numero">
+        </fieldset>
+        <button type="submit">Cadastrar Empregado</button>
+    </form>
+</body>
+</html>
