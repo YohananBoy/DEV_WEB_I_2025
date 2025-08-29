@@ -1,20 +1,19 @@
 <?php
-  include("../../service/funcionario.service.php");
+  include("../../service/cliente.service.php");
   $acao = $_POST["acao"] ?? $_GET["acao"] ?? null;
   $nome = isset($_POST['nome'])?$_POST['nome']:null;
-  $salario = isset($_POST['salario'])?$_POST['salario']:null;
   $telefone = isset($_POST['telefone'])?$_POST['telefone']:null;
   $id = $_POST["id"] ?? $_GET["id"] ?? null;
   if($acao=="cadastrar") {
-    cadastrarFuncionario($nome, $salario, $telefone);
+    cadastrarCliente($nome, $telefone);
     echo "Cadastrado com sucesso";
   }
   else if($acao=="alterar") {
-    alterarFuncionario($id, $nome, $salario, $telefone);
+    alterarCliente($id, $nome, $telefone);
     echo "Alterado com sucesso";
   }
   else if($acao=="remover") {
-    removerFuncionario($id);
+    removerCliente($id);
     echo "Removido com sucesso";
   }
   else {

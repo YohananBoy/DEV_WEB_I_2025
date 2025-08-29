@@ -11,10 +11,10 @@
         <button>Filtrar</button>
     </form>
     <?php
-    include("../../service/funcionario.service.php");
+    include("../../service/cliente.service.php");
     $filtro = isset($_POST["filtro"])?$_POST["filtro"]:"";
-    listarFuncionario($filtro);
+    listarCliente($filtro);
     ?>
-    <a href="cadastro_funcionario.php">Cadastrar Funcionario</a>
+    <a href="cadastro_cliente.php">Cadastrar Cliente</a>
 </body>
 </html>

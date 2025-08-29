@@ -30,5 +30,7 @@ include("../../service/funcionario.service.php");
         echo "Alterar";
     } else echo "Cadastrar"; ?></button>
     </form>
+
+    <a href="tabela_funcionario.php">Tabela Funcionario</a>
 </body>
 </html>
