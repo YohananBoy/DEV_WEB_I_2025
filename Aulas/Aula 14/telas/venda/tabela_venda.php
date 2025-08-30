@@ -21,7 +21,7 @@
         </div>
         <div id="usuario">
             <p><?php echo $_SESSION["login"]["nome"] . " (" . $_SESSION["login"]["email"] . ")"; ?></p>
-            <a href="logout.php">Logout</a>
+            <a href="../index/logout.php">Logout</a>
         </div>
     </header>
     <main>
@@ -39,6 +39,9 @@
         ?>
     
         <a href="cadastro_venda.php">Cadastrar Venda</a>
+                <br>
+        <br>
+        <a href="../index/index.php">Voltar ↩️</a>
     </main>
 </body>
 </html>

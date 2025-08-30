@@ -16,7 +16,7 @@
         <div id="usuario">
             <p><?php 
             if (isset($_SESSION["login"]) && $_SESSION["login"] != []) {
-                echo $_SESSION["login"]["nome"] . " (" . $_SESSION["login"]["email"] . ") <a href='../index/logout.php'>Logout</a>";
+                echo $_SESSION["login"]["nome"] . " (" . $_SESSION["login"]["email"] . ") <a href='logout.php'>Logout</a>";
             } ?></p>
             
         </div>

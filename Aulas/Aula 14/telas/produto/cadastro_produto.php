@@ -28,7 +28,7 @@ require_once "../../service/produto.service.php";
         </div>
         <div id="usuario">
             <p><?php echo $_SESSION["login"]["nome"] . " (" . $_SESSION["login"]["email"] . ")"; ?></p>
-            <a href="logout.php">Logout</a>
+            <a href="../index/logout.php">Logout</a>
         </div>
     </header>
     <main>
@@ -49,6 +49,9 @@ require_once "../../service/produto.service.php";
         </form>
     
         <a href="tabela_produto.php">Tabela Produto</a>
+                <br>
+        <br>
+        <a href="../index/index.php">Voltar ↩️</a>
     </main>
 </body>
 </html>

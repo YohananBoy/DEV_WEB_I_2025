@@ -34,7 +34,7 @@
         </div>
         <div id="usuario">
             <p><?php echo $_SESSION["login"]["nome"] . " (" . $_SESSION["login"]["email"] . ")"; ?></p>
-            <a href="logout.php">Logout</a>
+            <a href="../index/logout.php">Logout</a>
         </div>
     </header>
     <main>
@@ -80,6 +80,9 @@
         </form>
     
         <a href="tabela_venda.php">Tabela Venda</a>
+                <br>
+        <br>
+        <a href="../index/index.php">Voltar ↩️</a>
     </main>
 </body>
 </html>
