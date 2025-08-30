@@ -1,8 +1,3 @@
-1#Arroz 5kg#25.90
-2#Feijão 1kg#8.50
-3#Macarrão 500g#4.20
-4#Óleo de Soja 900ml#7.30
-5#Açúcar 1kg#5.10
-6#Café 500g#15.80
-7#Leite 1L#4.90
-8#Farinha de Trigo 1kg#6.40
+8#Pão francês 1kg#11.90
+9#Pastel de carne#7.00
+10#X-Burguer#12.00
