@@ -41,10 +41,8 @@ function listarFuncionario($filtroNome)
         echo "<tr><td>" . $funcionario->nome . "</td>";
         echo "<td>" . $funcionario->salario . "</td>";
         echo "<td>" . $funcionario->telefone . "</td>";
-        // echo "<td><a href='http://localhost/yohanan/DEV_WEB_I_2025/Aulas/Aula%2013/telas/cadastro_funcionario.php?id=".$funcionario->id."'>Alterar</a>";
         echo "<td><a href='http://localhost:3000/Aulas/Aula%2014/telas/funcionario/cadastro_funcionario.php?id=" . $funcionario->id . "'>Alterar</a>";
         echo " | ";
-        // echo "<a href='http://localhost/yohanan/DEV_WEB_I_2025/Aulas/Aula%2013/telas/executa_acao_funcionario.php?acao=remover&id=".$funcionario->id."'>Remover</a></td>";
         echo "<a href='http://localhost:3000/Aulas/Aula%2014/telas/funcionario/executa_acao_funcionario.php?acao=remover&id=" . $funcionario->id . "'>Remover</a></td>";
         echo "</tr>";
     }

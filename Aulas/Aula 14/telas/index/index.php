@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (! isset($_SESSION["login"]) || $_SESSION["login"] == []) {
-        header("Location: ../index/login.php");
+        header("Location: login.php");
         exit;
     }
 ?>
@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela Produto</title>
+    <title>Home</title>
     <link rel="stylesheet" href="../css/padaria.css">
 </head>
 <body>
@@ -25,16 +25,16 @@
         </div>
     </header>
     <main>
-        <form method="post">
-            <label>Nome:</label><input name="filtro"/>
-            <button>Filtrar</button>
-        </form>
-        <?php
-            require_once "../../service/produto.service.php";
-            $filtro = isset($_POST["filtro"]) ? $_POST["filtro"] : "";
-            listarProduto($filtro);
-        ?>
-        <a href="cadastro_produto.php">Cadastrar Produto</a>
+        <h2>Tabelas</h2>
+        <ul>
+            <li><a href="../cliente/tabela_cliente.php">Cliente</a></li>
+            <li><a href="../funcionario/tabela_funcionario.php">Funcionário</a></li>
+            <li><a href="../produto/tabela_produto.php">Produto</a></li>
+            <li><a href="../usuario/tabela_usuario.php">Usuário</a></li>
+            <li><a href="../venda/tabela_venda.php">Venda</a></li>
+        </ul>
+
+        <p style="margin-top: 30px">Aviso: caso algum link não funcionar, altere o service.php da respectiva página</p>
     </main>
 </body>
 </html>

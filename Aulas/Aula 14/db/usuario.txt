@@ -1,2 +1,9 @@
-1#emzo#emzodarsim@gmail.com#capacete123
-2#migueo#gepami7098@lanipe.com#senha
+1#João Silva#joao.silva@email.com#senha123
+2#Maria Oliveira#maria.oliveira@email.com#minhaSenha
+3#Carlos Souza#carlos.souza@email.com#abc12345
+4#Ana Costa#ana.costa@email.com#senhaSegura
+5#Pedro Santos#pedro.santos@email.com#123456
+6#Fernanda Lima#fernanda.lima@email.com#fernanda2025
+7#Ricardo Alves#ricardo.alves@email.com#ricardoPass
+8#Juliana Mendes#juliana.mendes@email.com#juliana2025
+9#Miguel Nunes#stroooo@fortnite.com#tororooooo
