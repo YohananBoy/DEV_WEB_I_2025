@@ -41,9 +41,9 @@ function listarUsuario($filtroNome)
         echo "<tr><td>" . $usuario->nome . "</td>";
         echo "<td>" . $usuario->email . "</td>";
         echo "<td>" . $usuario->senha . "</td>";
-        echo "<td><a href='http://localhost:3000/Aulas/Aula%2014/telas/usuario/cadastro_usuario.php?id=" . $usuario->id . "'>Alterar</a>";
+        echo "<td><a href='http://localhost/dev_web_i_2025/Aulas/Aula%2014/telas/usuario/cadastro_usuario.php?id=" . $usuario->id . "'>Alterar</a>";
         echo " | ";
-        echo "<a href='http://localhost:3000/Aulas/Aula%2014/telas/usuario/executa_acao_usuario.php?acao=remover&id=" . $usuario->id . "'>Remover</a></td>";
+        echo "<a href='http://localhost/dev_web_i_2025/Aulas/Aula%2014/telas/usuario/executa_acao_usuario.php?acao=remover&id=" . $usuario->id . "'>Remover</a></td>";
         echo "</tr>";
     }
     echo "</tbody></table>";

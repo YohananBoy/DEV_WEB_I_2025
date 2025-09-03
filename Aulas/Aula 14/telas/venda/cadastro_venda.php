@@ -18,14 +18,16 @@
 <?php
     require_once "../../service/venda.service.php";
     require_once "../../service/produto.service.php";
+    require_once "../../service/cliente.service.php";
 
     $venda = "";
     if (isset($_GET["id"])) {
         $venda = pegaVendaPeloId($_GET["id"]);
     }
 
-    // carrega lista de produtos para o select
-    $produtos = Produto::listar("");
+    $funcionarios = Funcionario::listar("");
+    $produtos     = Produto::listar("");
+    $clientes     = Cliente::listar("");
 ?>
     <header>
         <div id="logo">
@@ -43,28 +45,36 @@
             <?php if (! empty($venda)) {?>
                 <input type="hidden" name="id" value="<?php echo $venda->id; ?>"/>
             <?php }?>
-    
-            <label for="idProduto">Produto:</label>
-            <select name="idProduto" id="idProduto" required>
-                <option value="">Selecione um produto</option>
-                <?php foreach ($produtos as $produto) {?>
-                    <option value="<?php echo $produto->id; ?>"
-                        <?php if (! empty($venda) && $venda->idProduto == $produto->id) {
+
+            <label for="idFuncionario">Funcionario:</label>
+            <select name="idFuncionario" id="idFuncionario" required>
+                <option value="">Selecione um funcionario</option>
+                <?php foreach ($funcionarios as $funcionario) {?>
+                    <option value="<?php echo $funcionario->id; ?>"
+                        <?php if (! empty($venda) && $venda->idFuncionario == $funcionario->id) {
                                 echo "selected";
                         }
                             ?>>
-                        <?php echo $produto->nome . " - R$ " . $produto->preco; ?>
+                        <?php echo $funcionario->nome; ?>
                     </option>
                 <?php }?>
             </select><br/>
-    
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" name="quantidade" min="1"
-                   value="<?php if (! empty($venda)) {
-                                  echo $venda->quantidade;
-                          }
-                          ?>" required/><br/>
-    
+
+            <label for="idCliente">Cliente:</label>
+            <select name="idCliente" id="idCliente" required>
+                <option value="">Selecione um cliente</option>
+                <?php foreach ($clientes as $cliente) {?>
+                    <option value="<?php echo $cliente->id; ?>"
+                        <?php if (! empty($venda) && $venda->idCliente == $cliente->id) {
+                                echo "selected";
+                        }
+                            ?>>
+                        <?php echo $cliente->nome; ?>
+                    </option>
+                <?php }?>
+            </select><br/>
+
+
             <label for="data">Data:</label>
             <input type="date" id="data" name="data"
                    value="<?php if (! empty($venda)) {
@@ -73,14 +83,93 @@
                                   echo date('Y-m-d');
                           }
                           ?>" required/><br/>
-    
+
+            <label for="formaDePagamento">Forma de Pagamento:</label>
+            <select id="formaDePagamento" name="formaDePagamento" required>
+                <option value="Pix" <?php
+                                        if (! empty($venda) && $venda->formaDePagamento == "Pix") {
+                                            echo "selected";
+                                    }
+                                    ?>>Pix</option>
+                <option value="Dinheiro" <?php
+                                             if (! empty($venda) && $venda->formaDePagamento == "Dinheiro") {
+                                                 echo "selected";
+                                         }
+                                         ?>>Dinheiro</option>
+                <option value="Credito" <?php
+                                            if (! empty($venda) && $venda->formaDePagamento == "Credito") {
+                                                echo "selected";
+                                        }
+                                        ?>>Cartão de Crédito</option>
+                <option value="Debito" <?php
+                                           if (! empty($venda) && $venda->formaDePagamento == "Debito") {
+                                               echo "selected";
+                                       }
+                                       ?>>Cartão de Débito</option>
+            </select>
+
+
+            <label for="desconto">Desconto:</label>
+            <input type="number" id="desconto" name="desconto" min="0"
+                   value="<?php if (! empty($venda)) {
+                                  echo $venda->desconto;
+                          }
+                          ?>" required/><br/>
+
+            <h3>Itens da Venda</h3>
+            <div id="itensContainer">
+            <?php 
+            if (!empty($venda) && !empty($venda->itens)) {
+                $itensArray = explode("|", $venda->itens);
+                foreach ($itensArray as $item) {
+                    $itemArray = explode(",", $item);
+                    ?>
+                    <div class="itemVenda">
+                        <label>Produto:</label>
+                        <select name="idProduto[]" required>
+                            <option value="">Selecione um produto</option>
+                            <?php foreach ($produtos as $produto) { ?>
+                                <option value="<?php echo $produto->id; ?>"
+                                    <?php echo ($produto->id == $itemArray[0]) ? "selected" : ""; ?>>
+                                    <?php echo $produto->nome . " - R$ " . $produto->preco; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+
+                        <label>Qtd:</label>
+                        <input type="number" name="quantidade[]" min="1" value="<?php echo trim($itemArray[1]); ?>" required>
+                    </div>
+            <?php }
+            } else { ?>
+                <div class="itemVenda">
+                    <label>Produto:</label>
+                    <select name="idProduto[]" required>
+                        <option value="">Selecione um produto</option>
+                        <?php foreach ($produtos as $produto) { ?>
+                            <option value="<?php echo $produto->id; ?>">
+                                <?php echo $produto->nome . " - R$ " . $produto->preco; ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+
+                    <label>Qtd:</label>
+                    <input type="number" name="quantidade[]" min="1" value="1" required>
+                </div>
+            <?php } ?>
+            </div>
+
+
+
+<button type="button" id="btnAddItem">➕ Adicionar Produto</button>
+
+
             <button type="submit">
                 <?php echo ! empty($venda) ? "Alterar" : "Cadastrar"; ?>
             </button>
         </form>
-    
+
         <a href="tabela_venda.php">Tabela Venda</a>
-                <br>
+        <br>
         <br>
         <a href="../index/index.php">Voltar ↩️</a>
     </main>

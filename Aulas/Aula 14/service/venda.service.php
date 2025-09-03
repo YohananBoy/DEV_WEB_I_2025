@@ -1,9 +1,14 @@
 <?php
 require_once "../../model/venda.class.php";
 
-function cadastrarVenda($idProduto, $quantidade, $data)
+function cadastrarVenda($idFuncionario, $idCliente, $data, $formaDePagamento, $desconto, $itens)
 {
-    $venda = new Venda(null, $idProduto, $quantidade, $data);
+    $objItens = [];
+    foreach ($itens as $i) {
+        $objItens[] = new ItemVenda($i["idProduto"], $i["quantidade"]);
+    }
+
+    $venda = new Venda(null, $idFuncionario, $idCliente, $data, $formaDePagamento, $desconto, $objItens);
     $venda->cadastrar();
 }
 
@@ -12,13 +17,21 @@ function pegaVendaPeloId($id)
     return Venda::pegaPorId($id, __DIR__ . "/../db/venda.txt", "Venda");
 }
 
-function alterarVenda($id, $novoIdProduto, $novaQuantidade, $novaData)
+function alterarVenda($id, $novoIdFuncionario, $novoIdCliente, $novaData, $novaFormaDePagamento, $novoDesconto, $novosItens)
 {
     $venda = Venda::pegaPorId($id, __DIR__ . "/../db/venda.txt", "Venda");
     if ($venda) {
-        $venda->idProduto  = $novoIdProduto;
-        $venda->quantidade = $novaQuantidade;
-        $venda->data       = $novaData;
+        $venda->idFuncionario    = $novoIdFuncionario;
+        $venda->idCliente        = $novoIdCliente;
+        $venda->data             = $novaData;
+        $venda->formaDePagamento = $novaFormaDePagamento;
+        $venda->desconto         = $novoDesconto;
+
+        $venda->itens = [];
+        foreach ($novosItens as $i) {
+            $venda->adicionarItem(new ItemVenda($i["idProduto"], $i["quantidade"]));
+        }
+
         $venda->alterar();
     }
 }
@@ -38,10 +51,12 @@ function listarVenda($filtroIdProduto = "")
     echo "<table border='1'>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Produto</th>
-                <th>Quantidade</th>
+                <th>Funcionário</th>
+                <th>Cliente</th>
                 <th>Data</th>
+                <th>Forma de Pagamento</th>
+                <th>Desconto</th>
+                <th>Itens</th>
                 <th>Total</th>
                 <th>Ações</th>
             </tr>
@@ -49,20 +64,32 @@ function listarVenda($filtroIdProduto = "")
         <tbody>";
 
     foreach ($vendas as $venda) {
-        $produto     = $venda->pegaProduto();
-        $nomeProduto = $produto ? $produto->nome : "Produto não encontrado";
-        $total       = $venda->calcularTotal();
+        $funcionario     = $venda->pegaFuncionario();
+        $cliente         = $venda->pegaCliente();
+        $nomeFuncionario = $funcionario ? $funcionario->nome : "Funcionario não encontrado";
+        $nomeCliente     = $cliente ? $cliente->nome : "Cliente não encontrado";
+        $total           = $venda->calcularTotal();
+
+        $htmlItens = "<ul>";
+        foreach ($venda->itens as $item) {
+            $produto     = $item->pegaProduto();
+            $nomeProduto = $produto ? $produto->nome : "Produto não encontrado";
+            $htmlItens .= "<li>{$nomeProduto} - {$item->quantidade} unid.</li>";
+        }
+        $htmlItens .= "</ul>";
 
         echo "<tr>";
-        echo "<td>{$produto->id}</td>";
-        echo "<td>{$nomeProduto}</td>";
-        echo "<td>{$venda->quantidade}</td>";
+        echo "<td>{$nomeFuncionario}</td>";
+        echo "<td>{$nomeCliente}</td>";
         echo "<td>{$venda->data}</td>";
-        echo "<td>{$total}</td>";
+        echo "<td>{$venda->formaDePagamento}</td>";
+        echo "<td>{$venda->desconto}%</td>";
+        echo "<td>{$htmlItens}</td>";
+        echo "<td>R$ {$total}</td>";
 
         echo "<td>
-                <a href='http://localhost:3000/Aulas/Aula%2014/telas/venda/cadastro_venda.php?id={$venda->id}'>Alterar</a> |
-                <a href='http://localhost:3000/Aulas/Aula%2014/telas/venda/executa_acao_venda.php?acao=remover&id={$venda->id}'>Remover</a>
+                <a href='http://localhost/dev_web_i_2025/Aulas/Aula%2014/telas/venda/cadastro_venda.php?id={$venda->id}'>Alterar</a> |
+                <a href='http://localhost/dev_web_i_2025/Aulas/Aula%2014/telas/venda/executa_acao_venda.php?acao=remover&id={$venda->id}'>Remover</a>
               </td>";
         echo "</tr>";
     }

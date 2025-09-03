@@ -39,9 +39,9 @@ function listarCliente($filtroNome)
     foreach ($clientes as $cliente) {
         echo "<tr><td>" . $cliente->nome . "</td>";
         echo "<td>" . $cliente->telefone . "</td>";
-        echo "<td><a href='http://localhost:3000/Aulas/Aula%2014/telas/cliente/cadastro_cliente.php?id=" . $cliente->id . "'>Alterar</a>";
+        echo "<td><a href='http://localhost/dev_web_i_2025/Aulas/Aula%2014/telas/cliente/cadastro_cliente.php?id=" . $cliente->id . "'>Alterar</a>";
         echo " | ";
-        echo "<a href='http://localhost:3000/Aulas/Aula%2014/telas/cliente/executa_acao_cliente.php?acao=remover&id=" . $cliente->id . "'>Remover</a></td>";
+        echo "<a href='http://localhost/dev_web_i_2025/Aulas/Aula%2014/telas/cliente/executa_acao_cliente.php?acao=remover&id=" . $cliente->id . "'>Remover</a></td>";
         echo "</tr>";
     }
     echo "</tbody></table>";

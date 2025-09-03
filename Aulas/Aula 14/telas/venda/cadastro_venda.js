@@ -1,28 +1,14 @@
 document.addEventListener("DOMContentLoaded", (ev) => {
-  let formCad = document.getElementById("formCadastroVenda")
-  formCad.addEventListener("submit", (ev2) => {
-    ev2.preventDefault()
-
-    let campoProduto = document.getElementById("idProduto")
-    let campoQuantidade = document.getElementById("quantidade")
-    let campoData = document.getElementById("data")
-
-    if (
-      validaFormulario(
-        campoProduto.value,
-        campoQuantidade.value,
-        campoData.value
-      )
-    ) {
-      formCad.submit()
-    }
-  })
+  document.getElementById("btnAddItem").addEventListener("click", adicionaItem);
 })
 
-let validaFormulario = (idProduto, quantidade, data) => {
-  if (idProduto === "" || quantidade <= 0 || data === "") {
-    alert("Preencha todos os campos corretamente!")
-    return false
-  }
-  return true
+function adicionaItem() {
+    const container = document.getElementById("itensContainer");
+    const item = container.querySelector(".itemVenda");
+    const novoItem = item.cloneNode(true); //cria um clone do html
+
+    novoItem.querySelectorAll("input").forEach(input => input.value = 1);
+    novoItem.querySelector("select").selectedIndex = 0;
+
+    container.appendChild(novoItem);
 }
