@@ -109,6 +109,8 @@ class Venda extends ClassePai
         foreach ($this->itens as $item) {
             $total += $item->calcularSubtotal();
         }
+        $total *= ( 1 - ($this->desconto/100));
+        $total = number_format($total, 2, '.', '');
         return $total;
     }
 
