@@ -1,0 +1,50 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Arroz",
+      "categoria": "Alimentos",
+      "preco": 25.9,
+      "estoque": true
+    },
+    {
+      "id": 2,
+      "nome": "Feijão",
+      "categoria": "Alimentos",
+      "preco": 9.5,
+      "estoque": true
+    },
+    {
+      "id": 3,
+      "nome": "Detergente",
+      "categoria": "Limpeza",
+      "preco": 2.5,
+      "estoque": false
+    },
+    {
+      "id": 4,
+      "nome": "Shampoo",
+      "categoria": "Higiene",
+      "preco": 12.9,
+      "estoque": true
+    }
+  ],
+
+  "clientes": [
+    {
+      "nome": "Jose",
+      "id": 2,
+      "nascimento": "Bom Jardim"
+    },
+    {
+      "nome": "Miguel",
+      "id": 3,
+      "nascimento": "Nova Friburgo"
+    },
+    {
+      "nome": "Hanan",
+      "id": 4,
+      "nascimento": "Cachoeiras de Macacu"
+    }
+  ]
+}
