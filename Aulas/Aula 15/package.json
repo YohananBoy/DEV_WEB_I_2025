@@ -1,0 +1,15 @@
+{
+  "name": "aula-15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "carregaTabelaCliente.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yohanan",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3",
+    "prompt-sync": "^4.2.0"
+  }
+}
