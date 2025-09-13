@@ -1,0 +1,10 @@
+1|Dom Casmurro|Machado de Assis|1899-01-01
+2|O Senhor dos Anéis|J.R.R. Tolkien|1954-07-29
+3|1984|George Orwell|1949-06-08
+4|O Hobbit|J.R.R. Tolkien|1937-09-21
+5|Capitães da Areia|Jorge Amado|1937-01-01
+6|A Hora da Estrela|Clarice Lispector|1977-10-01
+7|Memórias Póstumas de Brás Cubas|Machado de Assis|1881-03-15
+8|Harry Potter e a Pedra Filosofal|J.K. Rowling|1997-06-26
+9|O Pequeno Príncipe|Antoine de Saint-Exupéry|1943-04-06
+10|A Revolução dos Bichos|George Orwell|1945-08-17
