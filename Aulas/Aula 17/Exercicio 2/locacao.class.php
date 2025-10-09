@@ -28,6 +28,6 @@ class Locacao
 
     public function exibirResumo()
     {
-        return "Cliente: {$this->cliente->nome} - Veículo: {$this->veiculo->marca} {$this->veiculo->modelo} {$this->veiculo->ano} - Alugado por {$this->dias} dias - Valor da Diária: {$this->valorDiaria} - Total a ser pago: " . $this->calcularTotal();
+        return "[Cliente: {$this->cliente->exibirDados()}\nVeículo: {$this->veiculo->exibirDados()}\nAlugado por {$this->dias} dias - Valor da Diária: {$this->valorDiaria} - Total a ser pago: " . $this->calcularTotal() . "]";
     }
 }
