@@ -1,7 +1,6 @@
 <?php
-require_once "entidade.class.php";
 
-class Cliente extends Entidade
+class Cliente
 {
     public $nome;
     public $cpf;
@@ -16,6 +15,6 @@ class Cliente extends Entidade
 
     public function exibirDados()
     {
-        return "Nome: {$this->nome} - CPF: {$this->cpf} - Telefone: {$telefone}\n";
+        return "Nome: {$this->nome} - CPF: {$this->cpf} - Telefone: {$this->telefone}";
     }
 }

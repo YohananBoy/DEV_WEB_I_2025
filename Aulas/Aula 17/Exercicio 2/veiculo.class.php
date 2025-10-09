@@ -1,7 +1,6 @@
 <?php
-require_once "entidade.class.php";
 
-abstract class Veiculo extends Entidade
+abstract class Veiculo
 {
     public $marca;
     public $modelo;
@@ -18,16 +17,16 @@ abstract class Veiculo extends Entidade
 
     public function alugar()
     {
-        $this->disponivel = $this->disponivel ? false : $this->disponivel;
+        $this->disponivel = false;
     }
     public function devolver()
     {
-        $this->disponivel = ! $this->disponivel ? true : $this->disponivel;
+        $this->disponivel = true;
     }
 
     public function exibirDados()
     {
         $estado = $this->disponivel ? "Disponível" : "Alugado";
-        return "Marca: {$this->marca} - Modelo: {$this->modelo} - Ano: {$this->ano} - Estado: {$estado}\n";
+        return "Marca: {$this->marca} - Modelo: {$this->modelo} - Ano: {$this->ano} - Estado: {$estado}";
     }
 }

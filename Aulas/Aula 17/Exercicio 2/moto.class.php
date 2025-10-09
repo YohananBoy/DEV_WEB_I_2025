@@ -9,11 +9,10 @@ class Moto extends Veiculo
     {
         parent::__construct($marca, $modelo, $ano, $disponivel);
         $this->cilindradas = $cilindradas;
-
     }
 
     public function exibirDados()
     {
-        return parent::exibirDados() . "Cilindradas: {$this->cilindradas}";
+        return parent::exibirDados() . " Cilindradas: {$this->cilindradas}";
     }
 }

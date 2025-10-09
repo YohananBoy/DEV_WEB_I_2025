@@ -9,11 +9,10 @@ class Carro extends Veiculo
     {
         parent::__construct($marca, $modelo, $ano, $disponivel);
         $this->qtdPortas = $qtdPortas;
-
     }
 
     public function exibirDados()
     {
-        return parent::exibirDados() . "Portas: {$this->qtdPortas}";
+        return parent::exibirDados() . " Portas: {$this->qtdPortas}";
     }
 }

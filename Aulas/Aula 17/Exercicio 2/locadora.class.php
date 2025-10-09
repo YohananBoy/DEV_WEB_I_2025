@@ -1,7 +1,6 @@
 <?php
-require_once "entidade.class.php";
 
-class Locadora extends Entidade
+class Locadora
 {
     public $clientes, $veiculos, $locacoes;
 
@@ -12,37 +11,37 @@ class Locadora extends Entidade
         $this->locacoes = $locacoes;
     }
 
-    public function adicionarCliente($cliente)
+    public function adicionarCliente(Cliente $c)
     {
-        array_push($this->clientes, $cliente);
+        array_push($this->clientes, $c);
     }
 
-    public function adicionarVeiculo($veiculo)
+    public function adicionarVeiculo(Veiculo $v)
     {
-        array_push($this->veiculos, $veiculo);
+        array_push($this->veiculos, $v);
     }
 
-    public function registrarLocacao($locacao)
+    public function registrarLocacao(Locacao $l)
     {
-        array_push($this->locacoes, $locacao);
+        array_push($this->locacoes, $l);
     }
 
-    public function registrarDevolucao($locacao)
+    public function registrarDevolucao(Locacao $locacao)
     {
         foreach ($this->locacoes as $index => $l) {
             if ($l === $locacao) {
+                $locacao->veiculo->devolver();
                 unset($this->locacoes[$index]);
                 break;
             }
         }
-
     }
 
     public function listarVeiculosDisponiveis()
     {
         $retorno = "";
         foreach ($this->veiculos as $veiculo) {
-            $retorno = $veiculo->disponivel ? $retorno . $veiculo->marca . $veiculo->modelo . $veiculo->ano . "\n" : $retorno;
+            $retorno = $veiculo->disponivel ? $retorno . $veiculo->exibirDados() . "\n" : $retorno;
         }
         return $retorno;
     }
@@ -51,9 +50,8 @@ class Locadora extends Entidade
     {
         $retorno = "";
         foreach ($this->locacoes as $locacao) {
-            $retorno = "Cliente: {$this->cliente} - Veículo: {$this->veiculo->marca} {$this->veiculo->modelo} {$this->veiculo->ano} - Alugado por {$this->dias} dias - Valor da diária: {$this->valorDiaria}";
+            $retorno = "Cliente: {$locacao->cliente->exibirDados()} - Veículo: {$locacao->veiculo->exibirDados()} - Alugado por {$locacao->dias} dias - Valor da diária: {$locacao->valorDiaria}";
             return $retorno;
-
         }
     }
 }

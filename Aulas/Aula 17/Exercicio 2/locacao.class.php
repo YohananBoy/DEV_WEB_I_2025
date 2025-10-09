@@ -1,7 +1,6 @@
 <?php
-require_once "entidade.class.php";
 
-class Locacao extends Entidade
+class Locacao
 {
     public $cliente;
     public $veiculo;
@@ -14,6 +13,7 @@ class Locacao extends Entidade
         $this->veiculo     = $veiculo;
         $this->dias        = $dias;
         $this->valorDiaria = $valorDiaria;
+        $veiculo->alugar();
     }
 
     public function calcularTotal()
@@ -26,8 +26,8 @@ class Locacao extends Entidade
         $this->veiculo->devolver();
     }
 
-    public function exibirDados()
+    public function exibirResumo()
     {
-        return "Cliente: {$this->cliente->nome} - Veículo: {$this->veiculo->marca} {$this->veiculo->modelo} {$this->veiculo->ano} - Alugado por {$this->dias} dias - Valor da Diária: {$this->valorDiaria} - Total a ser pago: " . $this->calcularTotal() . "\n";
+        return "Cliente: {$this->cliente->nome} - Veículo: {$this->veiculo->marca} {$this->veiculo->modelo} {$this->veiculo->ano} - Alugado por {$this->dias} dias - Valor da Diária: {$this->valorDiaria} - Total a ser pago: " . $this->calcularTotal();
     }
 }
