@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Sistema Hospitalar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Login de Usuário</h2>
+    <form method="POST" action="login.php">
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" name="senha" required>
+
+      <label for="perfil">Perfil:</label>
+      <select name="perfil" required>
+        <option value="">Selecione o perfil</option>
+        <option value="Recepcionista">Recepcionista</option>
+        <option value="Médico">Médico</option>
+        <option value="Enfermeiro">Enfermeiro</option>
+      </select>
+      <button type="submit">Entrar</button>
+	  <a href="logout.php">Logout</a>
+    </form>
+<?php
+session_start();
+
+$usuarios = [
+	["nome" => "Yohanan",
+	"email" => "yohanantop@gmail.com",
+	"senha" => "senhatop",
+	"perfil" => "Médico"],
+	["nome" => "Marx",
+	"email" => "amopod123@gmail.com",
+	"senha" => "blueberry",
+	"perfil" => "Enfermeiro"],
+	["nome" => "Migx STROOOO",
+	"email" => "fortnitebattleroyale@gmail.com",
+	"senha" => "formataopclogo",
+	"perfil" => "Recepcionista"]
+];
+
+if(!isset($_SESSION["login"])) {
+	$_SESSION["login"] = [];
+}
+
+if(isset($_POST["email"], $_POST["senha"], $_POST["perfil"])) {
+	foreach($usuarios as $usuario) {
+		if($usuario["email"] == $_POST["email"] && $usuario["senha"] == $_POST["senha"] && $usuario["perfil"] == $_POST["perfil"]) {
+			$_SESSION["login"] = $usuario;
+			header("Location: lista.php");
+			exit;
+		}
+	}
+	echo "Credenciais incorretas";
+}
+?>
+  </div>
+</body>
+</html>
