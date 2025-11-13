@@ -1,9 +1,15 @@
 <?php
-  require_once __DIR__ . "/GenericController.php";
-require_once  "./model/livro.class.php";
-class LivroController implements GenericController{
-    
-    function cadastrar($dadosRecebidos){
+require_once __DIR__ . "/GenericController.php";
+require_once __DIR__ . "/../model/livro.class.php";
+class LivroController implements GenericController
+{
+    private $conn;
+    public function __construct($conn)
+    {
+        $this->conn = $conn;
+    }
+    public function cadastrar($dadosRecebidos)
+    {
         $livro = new Livro(
             null,
             $dadosRecebidos->titulo,
@@ -14,27 +20,28 @@ class LivroController implements GenericController{
             $dadosRecebidos->localizacao,
             $dadosRecebidos->ISSN
         );
-        $livro->cadastrar();
+        $livro->cadastrar($this->conn);
     }
 
-    function listar($dadosRecebidos){
-        return Livro::listar($dadosRecebidos);
+    public function listar($dadosRecebidos)
+    {
+        return Livro::listar($dadosRecebidos, $this->conn);
     }
-    function alterar($dadosRecebidos){
-        $livro = LivroController::pegaPorId($dadosRecebidos->id);
-        $livro->titulo = $dadosRecebidos["titulo"];
-        $livro->autor = $dadosRecebidos["autor"];
-        $livro->editora = $dadosRecebidos["editora"];
+    public function alterar($dadosRecebidos)
+    {
+        $livro                = Livro::pegaPorId($dadosRecebidos->id, $this->conn);
+        $livro->titulo        = $dadosRecebidos["titulo"];
+        $livro->autor         = $dadosRecebidos["autor"];
+        $livro->editora       = $dadosRecebidos["editora"];
         $livro->anoPublicacao = $dadosRecebidos["anoPublicacao"];
-        $livro->genero = $dadosRecebidos["genero"];
-        $livro->localizacao = $dadosRecebidos["localizacao"];
-        $livro->ISSN = $dadosRecebidos["ISSN"];
-        $livro->alterar();
+        $livro->genero        = $dadosRecebidos["genero"];
+        $livro->localizacao   = $dadosRecebidos["localizacao"];
+        $livro->ISSN          = $dadosRecebidos["ISSN"];
+        $livro->alterar($this->conn);
     }
-    function remover($dadosRecebidos){
-       $livro = LivroController::pegaPorId($dadosRecebidos->id);
-       $livro->remover();
+    public function remover($dadosRecebidos)
+    {
+        $livro = Livro::pegaPorId($dadosRecebidos->id, $this->conn);
+        $livro->remover($this->conn);
     }
 }
-
-?>
