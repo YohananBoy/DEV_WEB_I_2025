@@ -34,7 +34,7 @@ class Livro extends ClassePai
 // ('O Hobbit', 'J. R. R. Tolkien', 'HarperCollins', 1937, 'Fantasia', 'G7', '1415-6171', 1),
 // ('A Metamorfose', 'Franz Kafka', 'Editora 34', 1915, 'Ficção', 'H8', '1819-0212', 1),
 // ('Orgulho e Preconceito', 'Jane Austen', 'Penguin', 1813, 'Romance', 'I9', '2223-4252', 1),
-//     ('It: A Coisa', 'Stephen King', 'Suma', 1986, 'Terror', 'J1', '2627-8293', 1);
+// ('It: A Coisa', 'Stephen King', 'Suma', 1986, 'Terror', 'J1', '2627-8293', 1);
 
     public function toEntity($dados)
     {
@@ -81,6 +81,12 @@ class Livro extends ClassePai
             ISSN = '$this->ISSN',
             disponivel = '$this->disponivel'
         WHERE id = $this->id";
+        $conn->query($SQL);
+    }
+
+    public function remover($conn)
+    {
+        $SQL = "DELETE FROM livro WHERE id = $this->id";
         $conn->query($SQL);
     }
     public static function pegaPorId($id, $conn)

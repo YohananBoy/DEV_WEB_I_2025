@@ -29,8 +29,13 @@ switch ($metodo) {
         echo json_encode($controller->listar($dadosRecebidos));
         exit;
     case "PUT":
-        echo json_encode($controller->alterar($dadosRecebidos));
+        $resultado = $controller->alterar($dadosRecebidos);
+        echo json_encode([
+            "erro"     => false,
+            "mensagem" => "Alterado com sucesso!",
+        ]);
         exit;
+
     case "DELETE":
         $controller->remover($dadosRecebidos);
         echo json_encode(["erro" => false, "mensagem" => "Removido com sucesso!"]);
