@@ -40,4 +40,55 @@ class UsuarioController implements GenericController
         $usuario = Usuario::pegaPorId($dadosRecebidos->id, $this->conn);
         $usuario->remover($this->conn);
     }
+    public function login($dadosRecebidos)
+    {
+        session_start();
+
+        $email     = $dadosRecebidos->email;
+        $senha     = $dadosRecebidos->senha;
+        $SQL       = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'";
+        $resultado = $this->conn->query($SQL);
+
+        if ($resultado && $resultado->num_rows > 0) {
+            $usuario                   = $resultado->fetch_array();
+            $_SESSION["usuario_id"]    = $usuario["id"];
+            $_SESSION["usuario_nome"]  = $usuario["nome"];
+            $_SESSION["usuario_email"] = $usuario["email"];
+
+            return [
+                "erro"     => false,
+                "mensagem" => "Login realizado com sucesso!",
+            ];
+        }
+
+        return [
+            "erro"     => true,
+            "mensagem" => "Email ou senha incorretos!",
+        ];
+
+    }
+
+    public function verificar()
+    {
+        session_start();
+
+        if (isset($_SESSION["usuario_id"])) {
+            return
+                ["logado" => true,
+                "nome"    => $_SESSION["usuario_nome"],
+                "email"   => $_SESSION["usuario_email"],
+            ];
+        }
+        return ["logado" => false];
+
+    }
+
+    public function logout()
+    {
+        session_start();
+        session_destroy();
+
+        return ["erro" => false, "mensagem" => "Logout realizado com sucesso!"];
+    }
+
 }

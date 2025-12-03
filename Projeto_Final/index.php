@@ -22,10 +22,22 @@ switch ($modulo) {
 $dadosRecebidos = json_decode(file_get_contents("php://input", true));
 switch ($metodo) {
     case "POST":
+        if (isset($_GET["acao"]) && $_GET["acao"] == "login") {
+            echo json_encode($controller->login($dadosRecebidos));
+            exit;
+        }
         $controller->cadastrar($dadosRecebidos);
         echo json_encode(["erro" => false, "mensagem" => "Cadastrado com sucesso!"]);
         exit;
     case "GET":
+        if (isset($_GET["acao"]) && $_GET["acao"] == "verificar") {
+            echo json_encode($controller->verificar());
+            exit;
+        }
+        if (isset($_GET["acao"]) && $_GET["acao"] == "logout") {
+            echo json_encode($controller->logout());
+            exit;
+        }
         echo json_encode($controller->listar($dadosRecebidos));
         exit;
     case "PUT":
